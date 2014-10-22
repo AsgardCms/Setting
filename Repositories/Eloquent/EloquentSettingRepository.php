@@ -162,7 +162,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      * @param string $module Module name
      * @return mixed
      */
-    private function findByModule($module)
+    public function findByModule($module)
     {
         return $this->model->where('name', 'LIKE', $module . '_%')->get();
     }
