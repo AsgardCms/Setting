@@ -32,4 +32,11 @@ interface SettingRepository extends BaseRepository
      * @return mixed
      */
     public function savedModuleSettings($module);
+
+    /**
+     * Find settings by module name
+     * @param string $module
+     * @return mixed
+     */
+    public function findByModule($module);
 }
