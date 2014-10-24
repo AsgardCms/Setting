@@ -14,8 +14,7 @@ class Reader
         $this->setting = $setting;
     }
 
-    public function read($name, $module = null)
+    public function read($setting)
     {
-
     }
 }
