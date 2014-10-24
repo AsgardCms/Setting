@@ -62,6 +62,8 @@
                 <h3 class="box-title">Non translatable fields</h3>
             </div>
             <div class="box-body">
+                <?php foreach($plainSettings as $settingName => $moduleInfo): ?>
+                <?php endforeach; ?>
             </div>
         </div>
         <div class="box-footer">
