@@ -16,6 +16,7 @@
 @stop
 
 @section('content')
+<?php use Illuminate\Support\Str; ?>
 @include('flash::message')
 {!! Form::open(['route' => ['dashboard.setting.store'], 'method' => 'post']) !!}
 <div class="row">
@@ -33,7 +34,8 @@
                     <div class="tab-content">
                         <div class="tab-pane {{ App::getLocale() == 'en' ? 'active' : '' }}" id="tab_1-1">
                             <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
-                                @include($moduleInfo['view'], [
+                                <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
+                                @include($fieldView, [
                                     'lang' => 'en',
                                     'settings' => $settings,
                                     'module' => $module,
@@ -44,7 +46,8 @@
                         </div>
                         <div class="tab-pane {{ App::getLocale() == 'fr' ? 'active' : '' }}" id="tab_2-2">
                             <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
-                                @include($moduleInfo['view'], [
+                                <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
+                                @include($fieldView, [
                                     'lang' => 'fr',
                                     'settings' => $settings,
                                     'module' => $module,
