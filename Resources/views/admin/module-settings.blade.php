@@ -25,6 +25,7 @@
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
             </div>
+            <?php if ($translatableSettings): ?>
             <div class="box-body">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
@@ -56,7 +57,9 @@
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
+        <?php if ($plainSettings): ?>
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.non translatable fields') }}</h3>
@@ -74,6 +77,7 @@
                 <?php endforeach; ?>
             </div>
         </div>
+        <?php endif; ?>
         <div class="box-footer">
             <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
             <a class="btn btn-danger pull-right btn-flat" href="{{ URL::route('dashboard.setting.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
