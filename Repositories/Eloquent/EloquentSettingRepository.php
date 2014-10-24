@@ -169,7 +169,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     public function findByModule($module)
     {
-        return $this->model->where('name', 'LIKE', $module . '_%')->get();
+        return $this->model->where('name', 'LIKE', $module . '::%')->get();
     }
 
     /**
@@ -184,7 +184,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
             return $this->model->where('name', 'LIKE', "%{$settingName}")->first();
         }
 
-        return $this->model->where('name', 'LIKE', "{$module}_{$settingName}")->first();
+        return $this->model->where('name', 'LIKE', "{$module}::{$settingName}")->first();
     }
 
     /**
