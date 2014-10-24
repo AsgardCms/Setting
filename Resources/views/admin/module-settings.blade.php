@@ -23,7 +23,7 @@
     <div class="col-md-12">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Translatable fields</h3>
+                <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
             </div>
             <div class="box-body">
                 <div class="nav-tabs-custom">
@@ -59,10 +59,18 @@
         </div>
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Non translatable fields</h3>
+                <h3 class="box-title">{{ trans('core::core.title.non translatable fields') }}</h3>
             </div>
             <div class="box-body">
                 <?php foreach($plainSettings as $settingName => $moduleInfo): ?>
+                    <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.plain.{$moduleInfo['view']}" ?>
+                    @include($fieldView, [
+                        'lang' => $locale,
+                        'settings' => $settings,
+                        'module' => $module,
+                        'setting' => $settingName,
+                        'moduleInfo' => $moduleInfo,
+                    ])
                 <?php endforeach; ?>
             </div>
         </div>
