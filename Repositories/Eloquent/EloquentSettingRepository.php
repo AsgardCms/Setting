@@ -181,4 +181,28 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
 
         return $this->model->where('name', 'LIKE', "{$module}_{$settingName}")->first();
     }
+
+    /**
+     * Return the translatable module settings
+     * @param $module
+     * @return mixed
+     */
+    public function translatableModuleSettings($module)
+    {
+        return array_filter($this->moduleSettings($module), function($setting) {
+            return isset($setting['translatable']);
+        });
+    }
+
+    /**
+     * Return the non translatable module settings
+     * @param $module
+     * @return array
+     */
+    public function plainModuleSettings($module)
+    {
+        return array_filter($this->moduleSettings($module), function($setting) {
+            return !isset($setting['translatable']);
+        });
+    }
 }

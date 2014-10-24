@@ -21,6 +21,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Translatable fields</h3>
+            </div>
             <div class="box-body">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
@@ -29,10 +32,9 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane {{ App::getLocale() == 'en' ? 'active' : '' }}" id="tab_1-1">
-                            <?php foreach($moduleSettings as $settingName => $moduleInfo): ?>
+                            <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
                                 @include($moduleInfo['view'], [
                                     'lang' => 'en',
-                                    'moduleSettings' => $moduleSettings,
                                     'settings' => $settings,
                                     'module' => $module,
                                     'setting' => $settingName,
@@ -41,10 +43,9 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="tab-pane {{ App::getLocale() == 'fr' ? 'active' : '' }}" id="tab_2-2">
-                            <?php foreach($moduleSettings as $settingName => $moduleInfo): ?>
+                            <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
                                 @include($moduleInfo['view'], [
                                     'lang' => 'fr',
-                                    'moduleSettings' => $moduleSettings,
                                     'settings' => $settings,
                                     'module' => $module,
                                     'setting' => $settingName,
@@ -55,10 +56,17 @@
                     </div>
                 </div>
             </div>
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
-                <a class="btn btn-danger pull-right btn-flat" href="{{ URL::route('dashboard.setting.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
+        </div>
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Non translatable fields</h3>
             </div>
+            <div class="box-body">
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
+            <a class="btn btn-danger pull-right btn-flat" href="{{ URL::route('dashboard.setting.index')}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
         </div>
     </div>
 </div>
