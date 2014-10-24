@@ -1,4 +1,4 @@
-<?php $settingName = $module . '_' . $setting; ?>
+<?php $settingName = $module . '::' . $setting; ?>
 <div class="checkbox">
     <?php foreach($moduleInfo['options'] as $value => $optionName): ?>
         <label for="{{ $optionName }}">

@@ -1,4 +1,4 @@
-<?php $settingName = $module . '_' . $setting; ?>
+<?php $settingName = $module . '::' . $setting; ?>
 <div class="checkbox">
     <label for="{{ $settingName }}">
         <input id="{{ $settingName }}"

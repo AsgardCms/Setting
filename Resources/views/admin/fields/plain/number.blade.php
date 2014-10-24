@@ -1,4 +1,4 @@
-<?php $settingName = $module . '_' . $setting; ?>
+<?php $settingName = $module . '::' . $setting; ?>
 <div class='form-group'>
     {!! Form::label($settingName, $moduleInfo['description']) !!}
     <?php if (isset($settings[$settingName])): ?>
