@@ -28,34 +28,31 @@
             <div class="box-body">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="{{ App::getLocale() == 'en' ? 'active' : '' }}"><a href="#tab_1-1" data-toggle="tab">{{ trans('core::core.tab.english') }}</a></li>
-                        <li class="{{ App::getLocale() == 'fr' ? 'active' : '' }}"><a href="#tab_2-2" data-toggle="tab">{{ trans('core::core.tab.french') }}</a></li>
+                        <?php $i = 0; ?>
+                        <?php foreach(LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                            <?php $i++; ?>
+                            <li class="{{ App::getLocale() == $locale ? 'active' : '' }}">
+                                <a href="#tab_{{ $i }}" data-toggle="tab">{{ trans('core::core.tab.'. strtolower($language['name'])) }}</a>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane {{ App::getLocale() == 'en' ? 'active' : '' }}" id="tab_1-1">
-                            <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
-                                <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
-                                @include($fieldView, [
-                                    'lang' => 'en',
-                                    'settings' => $settings,
-                                    'module' => $module,
-                                    'setting' => $settingName,
-                                    'moduleInfo' => $moduleInfo,
-                                ])
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="tab-pane {{ App::getLocale() == 'fr' ? 'active' : '' }}" id="tab_2-2">
-                            <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
-                                <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
-                                @include($fieldView, [
-                                    'lang' => 'fr',
-                                    'settings' => $settings,
-                                    'module' => $module,
-                                    'setting' => $settingName,
-                                    'moduleInfo' => $moduleInfo,
-                                ])
-                            <?php endforeach; ?>
-                        </div>
+                        <?php $i = 0; ?>
+                        <?php foreach(LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                            <?php $i++; ?>
+                            <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                                <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
+                                    <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
+                                    @include($fieldView, [
+                                        'lang' => $locale,
+                                        'settings' => $settings,
+                                        'module' => $module,
+                                        'setting' => $settingName,
+                                        'moduleInfo' => $moduleInfo,
+                                    ])
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
