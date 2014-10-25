@@ -1,4 +1,4 @@
-<?php $settingName = $module . '::' . $setting; ?>
+<?php $settingName = strtolower($currentModule) . '::' . $setting; ?>
 <div class="checkbox">
     <?php foreach($moduleInfo['options'] as $value => $optionName): ?>
         <label for="{{ $optionName }}">
@@ -6,7 +6,7 @@
                         name="{{ $settingName }}"
                         type="radio"
                         class="flat-blue"
-                        {{ isset($settings[$settingName]) && (bool)$settings[$settingName]->value == $value ? 'checked' : '' }}
+                        {{ isset($dbSettings[$settingName]) && (bool)$dbSettings[$settingName]->value == $value ? 'checked' : '' }}
                         value="{{ $value }}" />
                 {{ $optionName }}
         </label>

@@ -2,12 +2,12 @@
 
 @section('content-header')
 <h1>
-    {{ trans('setting::settings.title.module name settings', ['module' => ucfirst($module)]) }}
+    {{ trans('setting::settings.title.module name settings', ['module' => ucfirst($currentModule)]) }}
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>
     <li><a href="{{ URL::route('dashboard.setting.index') }}"><i class="fa fa-cog"></i> {{ trans('setting::settings.breadcrumb.settings') }}</a></li>
-    <li class="active"><i class="fa fa-cog"></i> {{ trans('setting::settings.breadcrumb.module settings', ['module' => ucfirst($module)]) }}</li>
+    <li class="active"><i class="fa fa-cog"></i> {{ trans('setting::settings.breadcrumb.module settings', ['module' => ucfirst($currentModule)]) }}</li>
 </ol>
 @stop
 
@@ -20,7 +20,19 @@
 @include('flash::message')
 {!! Form::open(['route' => ['dashboard.setting.store'], 'method' => 'post']) !!}
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2">
+        <div class="box box-info">
+            <div class="box-header"><h3 class="box-title">{{ trans('setting::settings.title.module settings') }}</h3></div>
+            <div class="box-body">
+                <ul>
+                    <?php foreach($modulesWithSettings as $module => $settings): ?>
+                        <li><a href="{{ URL::route('dashboard.module.settings', [$module]) }}">{{ $module }}</a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
@@ -47,7 +59,6 @@
                                     @include($fieldView, [
                                         'lang' => $locale,
                                         'settings' => $settings,
-                                        'module' => $module,
                                         'setting' => $settingName,
                                         'moduleInfo' => $moduleInfo,
                                     ])
@@ -70,7 +81,6 @@
                     @include($fieldView, [
                         'lang' => $locale,
                         'settings' => $settings,
-                        'module' => $module,
                         'setting' => $settingName,
                         'moduleInfo' => $moduleInfo,
                     ])
