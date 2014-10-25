@@ -16,7 +16,6 @@
 @stop
 
 @section('content')
-<?php use Illuminate\Support\Str; ?>
 @include('flash::message')
 {!! Form::open(['route' => ['dashboard.setting.store'], 'method' => 'post']) !!}
 <div class="row">
@@ -54,15 +53,7 @@
                         <?php foreach(LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
                             <?php $i++; ?>
                             <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                                <?php foreach($translatableSettings as $settingName => $moduleInfo): ?>
-                                    <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
-                                    @include($fieldView, [
-                                        'lang' => $locale,
-                                        'settings' => $settings,
-                                        'setting' => $settingName,
-                                        'moduleInfo' => $moduleInfo,
-                                    ])
-                                <?php endforeach; ?>
+                                @include('setting::admin.partials.fields', ['settings' => $translatableSettings])
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -76,15 +67,7 @@
                 <h3 class="box-title">{{ trans('core::core.title.non translatable fields') }}</h3>
             </div>
             <div class="box-body">
-                <?php foreach($plainSettings as $settingName => $moduleInfo): ?>
-                    <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.plain.{$moduleInfo['view']}" ?>
-                    @include($fieldView, [
-                        'lang' => $locale,
-                        'settings' => $settings,
-                        'setting' => $settingName,
-                        'moduleInfo' => $moduleInfo,
-                    ])
-                <?php endforeach; ?>
+                @include('setting::admin.partials.fields', ['settings' => $plainSettings])
             </div>
         </div>
         <?php endif; ?>
