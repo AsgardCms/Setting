@@ -1,7 +1,7 @@
 <?php namespace Modules\Setting\Composers;
 
 use Illuminate\View\View;
-use Modules\Blog\Composers\BaseSidebarViewComposer;
+use Modules\Core\Composers\BaseSidebarViewComposer;
 
 class SidebarViewComposer extends BaseSidebarViewComposer
 {
