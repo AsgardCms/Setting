@@ -3,7 +3,7 @@
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Setting\Repositories\SettingRepository;
 
-class Reader
+class Settings
 {
     /**
      * @var SettingRepository
@@ -19,11 +19,11 @@ class Reader
     }
 
     /**
-     * Return the setting
+     * Getting the setting
      * @param $setting
      * @return mixed
      */
-    public function read($setting)
+    public function get($setting)
     {
         $setting = $this->setting->get($setting);
 

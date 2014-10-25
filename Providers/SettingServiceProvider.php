@@ -1,8 +1,10 @@
 <?php namespace Modules\Setting\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Modules\Setting\Entities\Setting;
 use Modules\Setting\Repositories\Eloquent\EloquentSettingRepository;
+use Modules\Setting\Support\Settings;
 
 class SettingServiceProvider extends ServiceProvider {
 
@@ -22,6 +24,17 @@ class SettingServiceProvider extends ServiceProvider {
 	{
 		$this->app->booted(function () {
 			$this->registerBindings();
+		});
+
+		$this->app['setting.settings'] = $this->app->share(function($app)
+		{
+			return new Settings($app['Modules\Setting\Repositories\SettingRepository']);
+		});
+
+		$this->app->booting(function()
+		{
+			$loader = AliasLoader::getInstance();
+			$loader->alias('Settings', 'Modules\Setting\Facades\Settings');
 		});
 	}
 
