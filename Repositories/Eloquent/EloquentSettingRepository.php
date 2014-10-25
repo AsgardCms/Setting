@@ -174,17 +174,12 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
 
     /**
      * Find the given setting name for the given module
-     * @param $settingName
-     * @param $module
+     * @param string $settingName
      * @return mixed
      */
-    public function findSettingForModule($settingName, $module = null)
+    public function get($settingName)
     {
-        if (is_null($module)) {
-            return $this->model->where('name', 'LIKE', "%{$settingName}")->first();
-        }
-
-        return $this->model->where('name', 'LIKE', "{$module}::{$settingName}")->first();
+        return $this->model->where('name', 'LIKE', "{$settingName}")->first();
     }
 
     /**
