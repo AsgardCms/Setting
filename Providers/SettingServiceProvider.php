@@ -56,5 +56,9 @@ class SettingServiceProvider extends ServiceProvider {
 				return new EloquentSettingRepository(new Setting);
 			}
 		);
+		$this->app->bind(
+			'Modules\Core\Contracts\Setting',
+			'Modules\Setting\Support\Settings'
+		);
 	}
 }
