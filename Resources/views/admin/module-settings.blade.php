@@ -26,7 +26,7 @@
             <div class="box-body">
                 <ul>
                     <?php foreach($modulesWithSettings as $module => $settings): ?>
-                        <li><a href="{{ URL::route('dashboard.module.settings', [$module]) }}">{{ $module }}</a></li>
+                        <li style="margin-bottom: 15px"><a href="{{ URL::route('dashboard.module.settings', [$module]) }}" class="btn btn-default btn-flat {{ $module == ucfirst($currentModule) ? 'disabled' : '' }}">{{ $module }}</a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
