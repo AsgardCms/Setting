@@ -16,7 +16,6 @@
 @stop
 
 @section('content')
-@include('flash::message')
 {!! Form::open(['route' => ['dashboard.setting.store'], 'method' => 'post']) !!}
 <div class="row">
     <div class="sidebar-nav col-sm-2">
