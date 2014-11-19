@@ -49,9 +49,7 @@
             <?php if ($translatableSettings): ?>
             <div class="box-body">
                 <div class="nav-tabs-custom">
-                    <ul class="nav nav-tabs">
-                        @include('core::partials.form-tab-headers')
-                    </ul>
+                    @include('core::partials.form-tab-headers')
                     <div class="tab-content">
                         <?php $i = 0; ?>
                         <?php foreach(LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
