@@ -36,7 +36,7 @@ class SettingController extends AdminBaseController
         $this->setting->createOrUpdate($request->all());
 
         Flash::success('Settings saved!');
-        return Redirect::route('dashboard.setting.index');
+        return Redirect::route('dashboard.module.settings', ['Core']);
     }
 
     public function getModuleSettings($currentModule)
