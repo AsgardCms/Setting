@@ -121,8 +121,8 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     private function setTranslatedAttributes($settingValues, $setting)
     {
         foreach ($settingValues as $lang => $value) {
-            //dd($setting, $lang, $value);
-            $setting->translate($lang)->value = $value;
+            $translation = $setting->getTranslationOrNew($lang);
+            $translation->value = $value;
         }
     }
 
