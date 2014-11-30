@@ -48,7 +48,7 @@ class Settings implements Setting
             return $setting->plainValue;
         }
 
-        return $default;
+        return is_null($default) ? '' : $default;
     }
 
     /**
