@@ -10,6 +10,9 @@
         "Modules\\Setting\\Providers\\SettingServiceProvider",
         "Modules\\Setting\\Providers\\RouteServiceProvider"
     ],
+    "aliases": {
+        "Setting": "Modules\\Setting\\Facades\\Settings"
+    },
     "files": [
         "start.php"
     ]
