@@ -17,14 +17,6 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     }
 
     /**
-     * @param mixed $data
-     * @return mixed
-     */
-    public function create($data)
-    {
-    }
-
-    /**
      * Return all settings, with the setting name as key
      * @return array
      */
