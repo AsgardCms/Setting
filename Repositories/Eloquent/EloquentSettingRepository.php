@@ -76,7 +76,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     private function createForName($settingName, $settingValues)
     {
-        $setting = new $this->model;
+        $setting = new $this->model();
         $setting->name = $settingName;
 
         if (is_array($settingValues)) {
@@ -120,18 +120,18 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     /**
      * Return all modules that have settings
      * with its settings
-     * @param array|string $modules
+     * @param  array|string $modules
      * @return array
      */
     public function moduleSettings($modules)
     {
         if (is_string($modules)) {
-            return Config::get(strtolower($modules) . "::settings");
+            return Config::get(strtolower($modules)."::settings");
         }
 
         $modulesWithSettings = [];
         foreach ($modules as $module) {
-            if ($moduleSettings = Config::get(strtolower($module->getName()) . "::settings")) {
+            if ($moduleSettings = Config::get(strtolower($module->getName())."::settings")) {
                 $modulesWithSettings[$module->getName()] = $moduleSettings;
             }
         }
@@ -156,17 +156,17 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
 
     /**
      * Find settings by module name
-     * @param string $module Module name
+     * @param  string $module Module name
      * @return mixed
      */
     public function findByModule($module)
     {
-        return $this->model->where('name', 'LIKE', $module . '::%')->get();
+        return $this->model->where('name', 'LIKE', $module.'::%')->get();
     }
 
     /**
      * Find the given setting name for the given module
-     * @param string $settingName
+     * @param  string $settingName
      * @return mixed
      */
     public function get($settingName)
@@ -181,7 +181,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     public function translatableModuleSettings($module)
     {
-        return array_filter($this->moduleSettings($module), function($setting) {
+        return array_filter($this->moduleSettings($module), function ($setting) {
             return isset($setting['translatable']);
         });
     }
@@ -193,7 +193,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     public function plainModuleSettings($module)
     {
-        return array_filter($this->moduleSettings($module), function($setting) {
+        return array_filter($this->moduleSettings($module), function ($setting) {
             return !isset($setting['translatable']);
         });
     }

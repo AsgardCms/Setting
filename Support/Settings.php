@@ -17,7 +17,7 @@ class Settings implements Setting
 
     /**
      * @param SettingRepository $setting
-     * @param CacheManager $cache
+     * @param CacheManager      $cache
      */
     public function __construct(SettingRepository $setting, CacheManager $cache)
     {
@@ -27,9 +27,9 @@ class Settings implements Setting
 
     /**
      * Getting the setting
-     * @param string $name
-     * @param null $locale
-     * @param null $default
+     * @param  string $name
+     * @param  null   $locale
+     * @param  null   $default
      * @return mixed
      */
     public function get($name, $locale = null, $default = null)
@@ -68,7 +68,7 @@ class Settings implements Setting
      * Set a given configuration value.
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return void
      */
     public function set($key, $value)

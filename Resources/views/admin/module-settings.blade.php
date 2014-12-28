@@ -30,7 +30,7 @@
                 }
             </style>
     		<ul class="nav nav-list">
-    		  <?php foreach($modulesWithSettings as $module => $settings): ?>
+    		  <?php foreach ($modulesWithSettings as $module => $settings): ?>
                   <li>
                     <a href="{{ URL::route('dashboard.module.settings', [$module]) }}" class="{{ $module == ucfirst($currentModule) ? 'active' : '' }}">
                         {{ $module }}
@@ -52,7 +52,7 @@
                     @include('core::partials.form-tab-headers')
                     <div class="tab-content">
                         <?php $i = 0; ?>
-                        <?php foreach(LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                        <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
                             <?php $i++; ?>
                             <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                                 @include('setting::admin.partials.fields', ['settings' => $translatableSettings])

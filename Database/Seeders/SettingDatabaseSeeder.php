@@ -6,7 +6,6 @@ use Modules\Setting\Repositories\SettingRepository;
 
 class SettingDatabaseSeeder extends Seeder
 {
-
     /**
      * @var SettingRepository
      */
@@ -34,5 +33,4 @@ class SettingDatabaseSeeder extends Seeder
 
         $this->setting->create($data);
     }
-
 }
