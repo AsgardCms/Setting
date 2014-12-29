@@ -17,6 +17,6 @@ abstract class BaseSettingTest extends BaseTestCase
         $artisan = $this->app->make('Illuminate\Console\Application');
         $artisan->call('module:migrate', ['module' => 'Setting']);
 
-        $this->settingRepository = app('Modules\Setting\Repositories\Eloquent\EloquentSettingRepository');
+        $this->settingRepository = app('Modules\Setting\Repositories\SettingRepository');
     }
 }
