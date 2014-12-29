@@ -17,7 +17,7 @@ class CreateSettingTranslationsTable extends Migration
             $table->integer('setting_id')->unsigned();
             $table->string('locale')->index();
             $table->string('value');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unique(['setting_id', 'locale']);
             $table->foreign('setting_id')->references('id')->on('settings')->onDelete('cascade');
         });
