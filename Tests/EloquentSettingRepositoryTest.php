@@ -65,4 +65,27 @@ class EloquentSettingRepositoryTest extends BaseSettingTest
         $this->assertEquals('AsgardCMS_en', $setting->translate('en')->value);
         $this->assertEquals('AsgardCMS_fr', $setting->translate('fr')->value);
     }
+
+    /** @test */
+    public function it_returns_module_settings()
+    {
+        // Prepare
+        $data = [
+            'core::site-name' => [
+                'en' => 'AsgardCMS_en',
+                'fr' => 'AsgardCMS_fr',
+            ],
+            'core::template' => 'asgard',
+            'blog::posts-per-page' => 10,
+        ];
+
+        // Run
+        $this->settingRepository->createOrUpdate($data);
+
+        // Assert
+        $blogSettings = $this->settingRepository->findByModule('blog');
+        $this->assertEquals(1, $blogSettings->count());
+        $coreSettings = $this->settingRepository->findByModule('core');
+        $this->assertEquals(2, $coreSettings->count());
+    }
 }
