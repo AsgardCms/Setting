@@ -11,7 +11,7 @@ class Settings implements Setting
      */
     private $setting;
     /**
-     * @var Repository
+     * @var CacheManager
      */
     private $cache;
 
