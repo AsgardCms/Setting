@@ -15,7 +15,7 @@ class EloquentSettingRepositoryTest extends BaseSettingTest
             'core::site-name' => [
                 'en' => 'AsgardCMS_en',
                 'fr' => 'AsgardCMS_fr',
-            ]
+            ],
         ];
 
         // Run
@@ -33,7 +33,7 @@ class EloquentSettingRepositoryTest extends BaseSettingTest
     {
         // Prepare
         $data = [
-            'core::template' => 'asgard'
+            'core::template' => 'asgard',
         ];
 
         // Run
@@ -53,7 +53,7 @@ class EloquentSettingRepositoryTest extends BaseSettingTest
             'core::site-name' => [
                 'en' => 'AsgardCMS_en',
                 'fr' => 'AsgardCMS_fr',
-            ]
+            ],
         ];
 
         // Run
