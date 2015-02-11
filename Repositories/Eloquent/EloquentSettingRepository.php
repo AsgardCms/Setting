@@ -126,12 +126,12 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     public function moduleSettings($modules)
     {
         if (is_string($modules)) {
-            return Config::get(strtolower($modules)."::settings");
+            return config('asgard.'.strtolower($modules).".settings");
         }
 
         $modulesWithSettings = [];
         foreach ($modules as $module) {
-            if ($moduleSettings = Config::get(strtolower($module->getName())."::settings")) {
+            if ($moduleSettings = config('asgard.'.strtolower($module->getName()).".settings")) {
                 $modulesWithSettings[$module->getName()] = $moduleSettings;
             }
         }
