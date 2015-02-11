@@ -6,6 +6,6 @@
                 class="flat-blue"
                 {{ isset($dbSettings[$settingName]) && (bool)$dbSettings[$settingName]->translate($lang)->value == true ? 'checked' : '' }}
                 value="1" />
-        {{ $moduleInfo['description'] }}
+        {{ trans($moduleInfo['description']) }}
     </label>
 </div>

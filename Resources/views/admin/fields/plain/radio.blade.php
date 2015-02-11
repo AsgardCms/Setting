@@ -7,7 +7,7 @@
                         class="flat-blue"
                         {{ isset($dbSettings[$settingName]) && (bool)$dbSettings[$settingName]->plainValue == $value ? 'checked' : '' }}
                         value="{{ $value }}" />
-                {{ $optionName }}
+                {{ trans($optionName) }}
         </label>
     <?php endforeach; ?>
 </div>
