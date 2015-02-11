@@ -1,7 +1,7 @@
 <?php namespace Modules\Setting\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 use Modules\Setting\Repositories\SettingRepository;
 
 class SettingDatabaseSeeder extends Seeder
