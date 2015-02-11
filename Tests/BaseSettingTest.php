@@ -5,7 +5,7 @@ use Modules\Core\Tests\BaseTestCase;
 abstract class BaseSettingTest extends BaseTestCase
 {
     /**
-     * @var \Modules\Setting\Repositories\Eloquent\EloquentSettingRepository
+     * @var \Modules\Setting\Repositories\SettingRepository
      */
     protected $settingRepository;
 
