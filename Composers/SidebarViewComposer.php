@@ -9,8 +9,8 @@ class SidebarViewComposer extends BaseSidebarViewComposer
     {
         $view->items->put('setting', [
             'weight' => 5,
-            'request' => "*/$view->prefix/settings*",
-            'route' => 'dashboard.setting.index',
+            'request' => "*/$view->prefix/setting/settings*",
+            'route' => 'admin.setting.settings.index',
             'icon-class' => 'fa fa-cog',
             'title' => 'Settings',
             'permission' => $this->auth->hasAccess('settings.index')
