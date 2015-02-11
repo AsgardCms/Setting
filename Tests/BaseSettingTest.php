@@ -13,8 +13,8 @@ abstract class BaseSettingTest extends BaseTestCase
     {
         parent::setUp();
 
-        /** @var \Illuminate\Contracts\Console\Application $artisan */
-        $artisan = $this->app->make('Illuminate\Contracts\Console\Application');
+        /** @var \Illuminate\Contracts\Console\Kernel $artisan */
+        $artisan = $this->app->make('Illuminate\Contracts\Console\Kernel');
         $artisan->call('module:migrate', ['module' => 'Setting']);
 
         $this->settingRepository = app('Modules\Setting\Repositories\SettingRepository');
