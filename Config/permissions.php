@@ -2,5 +2,5 @@
 return [
     'settings' => [
         'index',
-    ]
+    ],
 ];

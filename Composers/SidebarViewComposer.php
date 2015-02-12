@@ -13,7 +13,7 @@ class SidebarViewComposer extends BaseSidebarViewComposer
             'route' => 'admin.setting.settings.index',
             'icon-class' => 'fa fa-cog',
             'title' => 'Settings',
-            'permission' => $this->auth->hasAccess('settings.index')
+            'permission' => $this->auth->hasAccess('settings.index'),
         ]);
     }
 }

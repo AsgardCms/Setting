@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'settings saved' => 'Configurations sauvegardées!'
+    'settings saved' => 'Configurations sauvegardées!',
 ];

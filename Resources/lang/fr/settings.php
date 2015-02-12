@@ -10,5 +10,5 @@ return [
     'breadcrumb' => [
         'settings' => 'Configurations',
         'module settings' => 'Configuration du :module',
-    ]
+    ],
 ];
