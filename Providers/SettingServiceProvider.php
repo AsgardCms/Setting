@@ -1,10 +1,12 @@
 <?php namespace Modules\Setting\Providers;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Modules\Setting\Entities\Setting;
 use Modules\Setting\Repositories\Eloquent\EloquentSettingRepository;
 use Modules\Setting\Support\Settings;
+use FloatingPoint\Stylist\Facades\StylistFacade as Stylist;
 
 class SettingServiceProvider extends ServiceProvider
 {
@@ -22,9 +24,7 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->booted(function () {
-            $this->registerBindings();
-        });
+        $this->registerBindings();
 
         $this->app['setting.settings'] = $this->app->share(function ($app) {
             return new Settings($app['Modules\Setting\Repositories\SettingRepository'], $app['cache']);
@@ -33,6 +33,11 @@ class SettingServiceProvider extends ServiceProvider
         $this->app->booting(function () {
             $loader = AliasLoader::getInstance();
             $loader->alias('Settings', 'Modules\Setting\Facades\Settings');
+        });
+
+        $themeName = $this->app['setting.settings']->get('core::template');
+        Event::listen('stylist.publishing', function() use ($themeName) {
+            return Stylist::discover(base_path("Themes/$themeName"));
         });
     }
 
