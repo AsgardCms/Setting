@@ -1,12 +1,10 @@
 <?php namespace Modules\Setting\Providers;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Modules\Setting\Entities\Setting;
 use Modules\Setting\Repositories\Eloquent\EloquentSettingRepository;
 use Modules\Setting\Support\Settings;
-use FloatingPoint\Stylist\Facades\StylistFacade as Stylist;
 
 class SettingServiceProvider extends ServiceProvider
 {
