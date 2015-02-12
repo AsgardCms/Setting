@@ -36,9 +36,7 @@ class SettingServiceProvider extends ServiceProvider
         });
 
         $themeName = $this->app['setting.settings']->get('core::template');
-        Event::listen('stylist.publishing', function() use ($themeName) {
-            return Stylist::discover(base_path("Themes/$themeName"));
-        });
+        Stylist::registerPath(base_path('Themes/' . $themeName), true);
     }
 
     /**
