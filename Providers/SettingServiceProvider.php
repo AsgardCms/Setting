@@ -34,7 +34,7 @@ class SettingServiceProvider extends ServiceProvider
         });
 
         $themeName = $this->app['setting.settings']->get('core::template');
-        $this->app['stylist']->registerPath(base_path('Themes/'.$themeName), true);
+        $this->app['stylist']->registerPath(base_path('Themes/' . $themeName), true);
     }
 
     /**
