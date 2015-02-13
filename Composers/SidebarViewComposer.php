@@ -11,6 +11,7 @@ class SidebarViewComposer extends BaseSidebarViewComposer
     {
         $view->sidebar->group('Setting', function (SidebarGroup $group) {
             $group->enabled = false;
+            $group->weight = 4;
 
             $group->addItem('Setting', function (SidebarItem $item) {
                 $item->route('admin.setting.settings.index');
