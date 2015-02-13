@@ -1,19 +1,25 @@
 <?php namespace Modules\Setting\Composers;
 
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Sidebar\SidebarGroup;
+use Maatwebsite\Sidebar\SidebarItem;
 use Modules\Core\Composers\BaseSidebarViewComposer;
 
 class SidebarViewComposer extends BaseSidebarViewComposer
 {
     public function compose(View $view)
     {
-        $view->items->put('setting', [
-            'weight' => 5,
-            'request' => "*/$view->prefix/setting/settings*",
-            'route' => 'admin.setting.settings.index',
-            'icon-class' => 'fa fa-cog',
-            'title' => 'Settings',
-            'permission' => $this->auth->hasAccess('settings.index'),
-        ]);
+        $view->sidebar->group('Setting', function (SidebarGroup $group) {
+            $group->enabled = false;
+
+            $group->addItem('Setting', function (SidebarItem $item) {
+                $item->route('admin.setting.settings.index');
+                $item->icon = 'fa fa-cog';
+                $item->name = 'Setting';
+                $item->authorize(
+                    $this->auth->hasAccess('settings.index')
+                );
+            });
+        });
     }
 }
