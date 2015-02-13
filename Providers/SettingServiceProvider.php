@@ -33,8 +33,7 @@ class SettingServiceProvider extends ServiceProvider
             $loader->alias('Settings', 'Modules\Setting\Facades\Settings');
         });
 
-        $themeName = $this->app['setting.settings']->get('core::template');
-        $this->app['stylist']->registerPath(base_path('Themes/' . $themeName), true);
+        $this->setActiveTheme();
     }
 
     /**
@@ -59,5 +58,28 @@ class SettingServiceProvider extends ServiceProvider
             'Modules\Core\Contracts\Setting',
             'Modules\Setting\Support\Settings'
         );
+    }
+
+    /**
+     * Set the active theme based on the settings
+     */
+    private function setActiveTheme()
+    {
+        if ($this->inAdministration()) {
+            $themeName = $this->app['config']->get('asgard.core.core.admin-theme');
+            return $this->app['stylist']->registerPath(base_path('Themes/' . $themeName), true);
+        }
+
+        $themeName = $this->app['setting.settings']->get('core::template');
+        return $this->app['stylist']->registerPath(base_path('Themes/' . $themeName), true);
+    }
+
+    /**
+     * Check if we are in the administration
+     * @return bool
+     */
+    private function inAdministration()
+    {
+        return $this->app['request']->segment(2) === $this->app['config']->get('asgard.core.core.admin-prefix');
     }
 }
