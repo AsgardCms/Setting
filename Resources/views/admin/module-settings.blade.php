@@ -1,4 +1,4 @@
-@extends('core::layouts.master')
+@extends('layouts.master')
 
 @section('content-header')
 <h1>
@@ -49,7 +49,7 @@
             <?php if ($translatableSettings): ?>
             <div class="box-body">
                 <div class="nav-tabs-custom">
-                    @include('core::partials.form-tab-headers')
+                    @include('partials.form-tab-headers')
                     <div class="tab-content">
                         <?php $i = 0; ?>
                         <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
