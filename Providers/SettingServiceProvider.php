@@ -81,7 +81,8 @@ class SettingServiceProvider extends ServiceProvider
      */
     private function inAdministration()
     {
-        return $this->app['request']->segment(2) === $this->app['config']->get('asgard.core.core.admin-prefix');
+        return $this->app['request']->segment(2) === $this->app['config']->get('asgard.core.core.admin-prefix')
+            || 'auth';
     }
 
     /**
