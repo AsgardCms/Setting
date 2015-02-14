@@ -68,10 +68,12 @@ class SettingServiceProvider extends ServiceProvider
     {
         if ($this->inAdministration()) {
             $themeName = $this->app['config']->get('asgard.core.core.admin-theme');
+
             return $this->app['stylist']->activate($themeName, true);
         }
 
         $themeName = $this->app['setting.settings']->get('core::template');
+
         return $this->app['stylist']->activate($themeName, true);
     }
 
