@@ -66,6 +66,10 @@ class SettingServiceProvider extends ServiceProvider
      */
     private function setActiveTheme()
     {
+        if (! $this->asgardIsInstalled()) {
+            return;
+        }
+
         if ($this->inAdministration()) {
             $themeName = $this->app['config']->get('asgard.core.core.admin-theme');
 
@@ -95,5 +99,17 @@ class SettingServiceProvider extends ServiceProvider
         $themePaths = $this->app['stylist']->discover(base_path('Themes'));
 
         $this->app['stylist']->registerPaths($themePaths);
+    }
+
+    /**
+     * Check if Asgard is installed
+     * @return bool
+     */
+    private function asgardIsInstalled()
+    {
+        /** @var \Illuminate\Contracts\Filesystem\Filesystem $finder */
+        $finder = app('Illuminate\Contracts\Filesystem\Filesystem');
+
+        return $finder->exists('.env');
     }
 }
