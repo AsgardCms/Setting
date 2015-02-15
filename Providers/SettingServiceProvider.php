@@ -66,7 +66,7 @@ class SettingServiceProvider extends ServiceProvider
      */
     private function setActiveTheme()
     {
-        if (! $this->asgardIsInstalled()) {
+        if ($this->app->runningInConsole() || ! $this->asgardIsInstalled()) {
             return;
         }
 
