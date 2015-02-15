@@ -70,7 +70,7 @@ class SettingServiceProvider extends ServiceProvider
             return;
         }
 
-        if ($this->inAdministration()) {
+        if ($this->inAdministration() || $this->onAuthentication()) {
             $themeName = $this->app['config']->get('asgard.core.core.admin-theme');
 
             return $this->app['stylist']->activate($themeName, true);
@@ -87,8 +87,7 @@ class SettingServiceProvider extends ServiceProvider
      */
     private function inAdministration()
     {
-        return $this->app['request']->segment(2) === $this->app['config']->get('asgard.core.core.admin-prefix')
-            || $this->app['request']->segment(2) === 'auth';
+        return $this->app['request']->segment(2) === $this->app['config']->get('asgard.core.core.admin-prefix');
     }
 
     /**
@@ -111,5 +110,14 @@ class SettingServiceProvider extends ServiceProvider
         $finder = app('Illuminate\Contracts\Filesystem\Filesystem');
 
         return $finder->exists('.env');
+    }
+
+    /**
+     * Check if we are on the authentication pages
+     * @return bool
+     */
+    private function onAuthentication()
+    {
+        return $this->app['request']->segment(2) === 'auth';
     }
 }
