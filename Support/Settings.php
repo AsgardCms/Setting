@@ -43,8 +43,7 @@ class Settings implements Setting
                     $this->cache->put("setting.$name.$locale", $setting->plainValue, '3600');
                 }
             } else {
-                $default = is_null($default) ? '' : $default;
-                $this->cache->put("setting.$name.$locale", $default, '3600');
+                return is_null($default) ? '' : $default;
             }
         }
 
