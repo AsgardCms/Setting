@@ -182,7 +182,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     public function translatableModuleSettings($module)
     {
         return array_filter($this->moduleSettings($module), function ($setting) {
-            return isset($setting['translatable']);
+            return isset($setting['translatable']) && $setting['translatable'] === true;
         });
     }
 
@@ -194,7 +194,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
     public function plainModuleSettings($module)
     {
         return array_filter($this->moduleSettings($module), function ($setting) {
-            return !isset($setting['translatable']);
+            return !isset($setting['translatable']) || $setting['translatable'] === false;
         });
     }
 }
