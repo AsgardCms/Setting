@@ -32,8 +32,9 @@
     		<ul class="nav nav-list">
     		  <?php foreach ($modulesWithSettings as $module => $settings): ?>
                   <li>
-                    <a href="{{ URL::route('dashboard.module.settings', [$module]) }}" class="{{ $module == ucfirst($currentModule) ? 'active' : '' }}">
-                        {{ $module }}
+                    <a href="{{ URL::route('dashboard.module.settings', [$module]) }}"
+                       class="{{ $module == $currentModule ? 'active' : '' }}">
+                        {{ ucfirst($module) }}
                         <small class="badge pull-right bg-blue">{{ count($settings) }}</small>
                     </a>
                     </li>
