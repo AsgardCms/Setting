@@ -76,7 +76,7 @@ class SettingServiceProvider extends ServiceProvider
             return $this->app['stylist']->activate($themeName, true);
         }
 
-        $themeName = $this->app['setting.settings']->get('core::template', null, 'Demo');
+        $themeName = $this->app['setting.settings']->get('core::template', null, 'Flatly');
 
         return $this->app['stylist']->activate($themeName, true);
     }
