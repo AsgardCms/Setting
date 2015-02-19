@@ -12,7 +12,7 @@ class CreateSettingTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('setting_translations', function (Blueprint $table) {
+        Schema::create('setting__setting_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('setting_id')->unsigned();
             $table->string('locale')->index();
@@ -30,6 +30,6 @@ class CreateSettingTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('setting_translations');
+        Schema::drop('setting__setting_translations');
     }
 }

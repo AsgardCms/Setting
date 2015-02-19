@@ -9,4 +9,5 @@ class Setting extends Model
 
     public $translatedAttributes = ['value', 'description'];
     protected $fillable = ['name', 'value', 'description', 'isTranslatable', 'plainValue'];
+    protected $table = 'setting__settings';
 }

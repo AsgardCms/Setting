@@ -12,7 +12,7 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('setting__settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('plainValue')->nullable();
@@ -28,6 +28,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('settings');
+        Schema::drop('setting__settings');
     }
 }
