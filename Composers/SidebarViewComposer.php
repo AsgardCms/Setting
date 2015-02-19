@@ -16,7 +16,7 @@ class SidebarViewComposer extends BaseSidebarViewComposer
                 $item->weight = 50;
                 $item->route('admin.setting.settings.index');
                 $item->authorize(
-                    $this->auth->hasAccess('settings.index')
+                    $this->auth->hasAccess('setting.settings.index')
                 );
             });
         });
