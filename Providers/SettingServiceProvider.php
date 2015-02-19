@@ -87,7 +87,9 @@ class SettingServiceProvider extends ServiceProvider
      */
     private function inAdministration()
     {
-        return $this->app['request']->segment(2) === $this->app['config']->get('asgard.core.core.admin-prefix');
+        $segment = config('laravellocalization.hideDefaultLocaleInURL', false) ? 1 : 2;
+
+        return $this->app['request']->segment($segment) === $this->app['config']->get('asgard.core.core.admin-prefix');
     }
 
     /**
