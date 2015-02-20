@@ -1,4 +1,6 @@
-<?php use Illuminate\Support\Str; ?>
+<?php use Illuminate\Support\Str;
+
+?>
 <?php foreach ($settings as $settingName => $moduleInfo): ?>
     <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
     @include($fieldView, [
