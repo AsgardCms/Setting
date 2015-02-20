@@ -9,6 +9,7 @@
     "priority": 1,
     "providers": [
         "Modules\\Setting\\Providers\\SettingServiceProvider",
+        "Modules\\Setting\\Providers\\ThemeServiceProvider",
         "Modules\\Setting\\Providers\\RouteServiceProvider"
     ],
     "aliases": {
