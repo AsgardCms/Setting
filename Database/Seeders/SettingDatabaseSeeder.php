@@ -27,7 +27,7 @@ class SettingDatabaseSeeder extends Seeder
 
         $data = [
             'name' => 'core::template',
-            'plainValue' => 'Demo',
+            'plainValue' => 'Flatly',
             'isTranslatable' => false,
         ];
 
