@@ -19,7 +19,7 @@
 {!! Form::open(['route' => ['admin.setting.settings.store'], 'method' => 'post']) !!}
 <div class="row">
     <div class="sidebar-nav col-sm-2">
-        <div class="box box-info">
+        <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('setting::settings.title.module settings') }}</h3>
             </div>
@@ -43,7 +43,7 @@
     	</div>
     </div>
     <div class="col-md-10">
-        <div class="box box-info">
+        <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
             </div>
@@ -65,7 +65,7 @@
             <?php endif; ?>
         </div>
         <?php if ($plainSettings): ?>
-        <div class="box box-info">
+        <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ trans('core::core.title.non translatable fields') }}</h3>
             </div>
