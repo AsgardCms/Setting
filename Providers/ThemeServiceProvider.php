@@ -10,8 +10,10 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerAllThemes();
-        $this->setActiveTheme();
+        $this->app->booted(function () {
+            $this->registerAllThemes();
+            $this->setActiveTheme();
+        });
     }
 
     /**
