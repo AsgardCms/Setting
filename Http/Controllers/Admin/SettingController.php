@@ -7,6 +7,7 @@ use Laracasts\Flash\Flash;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Setting\Http\Requests\SettingRequest;
 use Modules\Setting\Repositories\SettingRepository;
+use Pingpong\Modules\Module;
 
 class SettingController extends AdminBaseController
 {
@@ -46,18 +47,18 @@ class SettingController extends AdminBaseController
         return Redirect::route('dashboard.module.settings', [$this->session->get('module', 'Core')]);
     }
 
-    public function getModuleSettings($currentModule)
+    public function getModuleSettings(Module $currentModule)
     {
-        $this->session->set('module', $currentModule);
+        $this->session->set('module', $currentModule->getLowerName());
 
         $modulesWithSettings = $this->setting->moduleSettings($this->module->enabled());
 
-        $translatableSettings = $this->setting->translatableModuleSettings($currentModule);
-        $plainSettings = $this->setting->plainModuleSettings($currentModule);
+        $translatableSettings = $this->setting->translatableModuleSettings($currentModule->getLowerName());
+        $plainSettings = $this->setting->plainModuleSettings($currentModule->getLowerName());
 
-        $dbSettings = $this->setting->savedModuleSettings($currentModule);
+        $dbSettings = $this->setting->savedModuleSettings($currentModule->getLowerName());
 
-        return View::make('setting::admin.module-settings',
+        return view('setting::admin.module-settings',
             compact('currentModule', 'translatableSettings', 'plainSettings', 'dbSettings', 'modulesWithSettings'));
     }
 }

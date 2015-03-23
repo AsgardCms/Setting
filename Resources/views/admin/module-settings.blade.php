@@ -33,7 +33,7 @@
     		  <?php foreach ($modulesWithSettings as $module => $settings): ?>
                   <li>
                     <a href="{{ URL::route('dashboard.module.settings', [$module]) }}"
-                       class="{{ $module == $currentModule ? 'active' : '' }}">
+                       class="{{ $module == $currentModule->getLowerName() ? 'active' : '' }}">
                         {{ ucfirst($module) }}
                         <small class="badge pull-right bg-blue">{{ count($settings) }}</small>
                     </a>
