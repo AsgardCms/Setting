@@ -38,7 +38,12 @@ class Settings implements Setting
             $setting = $this->setting->get($name);
             if ($setting) {
                 if ($setting->isTranslatable) {
-                    $this->cache->put("setting.$name.$locale", $setting->translate($locale)->value, '3600');
+                    if ($setting->hasTranslation($locale)) {
+                        $this->cache->put("setting.$name.$locale", $setting->translate($locale)->value, '3600');
+                    } else {
+                        $this->cache->put("setting.$name.$locale", '', '3600');
+                    }
+
                 } else {
                     $this->cache->put("setting.$name.$locale", $setting->plainValue, '3600');
                 }
