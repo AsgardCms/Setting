@@ -4,7 +4,7 @@
                 name="{{ $settingName . "[$lang]" }}"
                 type="checkbox"
                 class="flat-blue"
-                {{ isset($dbSettings[$settingName]) && (bool)$dbSettings[$settingName]->translate($lang)->value == true ? 'checked' : '' }}
+                {{ isset($dbSettings[$settingName]) && (bool)$dbSettings[$settingName]->plainValue== true ? 'checked' : '' }}
                 value="1" />
         {{ trans($moduleInfo['description']) }}
     </label>

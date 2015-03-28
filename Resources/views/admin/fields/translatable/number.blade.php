@@ -1,8 +1,8 @@
 <div class='form-group'>
-    {!! Form::label($settingName . "[$lang]", trans($moduleInfo['description'])) !!}
+    {!! Form::label($settingName, trans($moduleInfo['description'])) !!}
     <?php if (isset($dbSettings[$settingName])): ?>
-        {!! Form::input('number', $settingName . "[$lang]", Input::old($settingName . "[$lang]", $dbSettings[$settingName]->translate($lang)->value), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
+        {!! Form::input('number', $settingName, Input::old($settingName, $dbSettings[$settingName]->plainValue), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
     <?php else: ?>
-        {!! Form::input('number', $settingName . "[$lang]", Input::old($settingName . "[$lang]"), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
+        {!! Form::input('number', $settingName, Input::old($settingName), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
     <?php endif; ?>
 </div>
