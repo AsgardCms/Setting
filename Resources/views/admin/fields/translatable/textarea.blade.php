@@ -1,8 +1,9 @@
 <div class='form-group'>
-    {!! Form::label($settingName, trans($moduleInfo['description'])) !!}
+    {!! Form::label($settingName . "[$lang]", trans($moduleInfo['description'])) !!}
     <?php if (isset($dbSettings[$settingName])): ?>
-        {!! Form::textarea($settingName, Input::old($settingName, $dbSettings[$settingName]->plainValue), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
+        <?php $value = $dbSettings[$settingName]->hasTranslation($lang) ? $dbSettings[$settingName]->translate($lang)->value : ''; ?>
+        {!! Form::textarea($settingName . "[$lang]", Input::old($settingName . "[$lang]", $value), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
     <?php else: ?>
-        {!! Form::textarea($settingName, Input::old($settingName), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
+        {!! Form::textarea($settingName . "[$lang]", Input::old($settingName . "[$lang]"), ['class' => 'form-control', 'placeholder' => trans($moduleInfo['description'])]) !!}
     <?php endif; ?>
 </div>
