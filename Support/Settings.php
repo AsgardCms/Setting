@@ -43,7 +43,6 @@ class Settings implements Setting
                     } else {
                         $this->cache->put("setting.$name.$locale", '', '3600');
                     }
-
                 } else {
                     $this->cache->put("setting.$name.$locale", $setting->plainValue, '3600');
                 }
