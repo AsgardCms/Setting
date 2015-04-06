@@ -43,27 +43,27 @@
     	</div>
     </div>
     <div class="col-md-10">
-        <div class="box box-primary">
-            <div class="box-header">
-                <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
-            </div>
-            <?php if ($translatableSettings): ?>
-            <div class="box-body">
-                <div class="nav-tabs-custom">
-                    @include('partials.form-tab-headers')
-                    <div class="tab-content">
-                        <?php $i = 0; ?>
-                        <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
-                            <?php $i++; ?>
-                            <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                                @include('setting::admin.partials.fields', ['settings' => $translatableSettings])
-                            </div>
-                        <?php endforeach; ?>
+        <?php if ($translatableSettings): ?>
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{{ trans('core::core.title.translatable fields') }}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="nav-tabs-custom">
+                        @include('partials.form-tab-headers')
+                        <div class="tab-content">
+                            <?php $i = 0; ?>
+                            <?php foreach (LaravelLocalization::getSupportedLocales() as $locale => $language): ?>
+                                <?php $i++; ?>
+                                <div class="tab-pane {{ App::getLocale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
+                                    @include('setting::admin.partials.fields', ['settings' => $translatableSettings])
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>
-            <?php endif; ?>
-        </div>
+        <?php endif; ?>
         <?php if ($plainSettings): ?>
         <div class="box box-primary">
             <div class="box-header">
