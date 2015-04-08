@@ -3,6 +3,7 @@
 ?>
 <?php foreach ($settings as $settingName => $moduleInfo): ?>
     <?php $fieldView = Str::contains($moduleInfo['view'], '::') ? $moduleInfo['view'] : "setting::admin.fields.translatable.{$moduleInfo['view']}" ?>
+    <?php $locale = isset($locale) ? $locale : '' ?>
     @include($fieldView, [
         'lang' => $locale,
         'settings' => $settings,
