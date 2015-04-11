@@ -32,6 +32,17 @@ abstract class BaseSettingTest extends TestCase
             'database' => ':memory:',
             'prefix' => '',
         ));
+        $app['config']->set('asgard.core.settings', [
+            'site-name' => [
+                'description' => 'core::settings.site-name',
+                'view' => 'text',
+                'translatable' => true,
+            ],
+            'template' => [
+                'description' => 'core::settings.template',
+                'view' => 'core::fields.select-theme',
+            ],
+        ]);
     }
 
     protected function getPackageAliases($app)
