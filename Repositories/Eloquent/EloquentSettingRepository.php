@@ -84,7 +84,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
             $this->setTranslatedAttributes($settingValues, $setting);
         } else {
             $setting->isTranslatable = false;
-            $setting->plainValue = $settingValues;
+            $setting->plainValue = $this->getSettingPlainValue($settingValues);
         }
 
         return $setting->save();
@@ -100,7 +100,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
         if ($this->isTranslatableSetting($setting->name)) {
             $this->setTranslatedAttributes($settingValues, $setting);
         } else {
-            $setting->plainValue = $settingValues;
+            $setting->plainValue = $this->getSettingPlainValue($settingValues);
         }
 
         return $setting->save();
@@ -222,5 +222,19 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
         $setting = config("$configSettingName");
 
         return isset($setting['translatable']) && $setting['translatable'] === true;
+    }
+
+    /**
+     * Return the setting value(s). If values are ann array, json_encode them
+     * @param string|array $settingValues
+     * @return string
+     */
+    private function getSettingPlainValue($settingValues)
+    {
+        if (is_array($settingValues)) {
+            return json_encode($settingValues);
+        }
+
+        return $settingValues;
     }
 }
