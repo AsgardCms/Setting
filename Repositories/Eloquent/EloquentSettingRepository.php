@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Config;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
+use Modules\Setting\Events\SettingWasUpdated;
 use Modules\Setting\Repositories\SettingRepository;
 
 class EloquentSettingRepository extends EloquentBaseRepository implements SettingRepository
@@ -97,10 +98,15 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
      */
     private function updateSetting($setting, $settingValues)
     {
-        if ($this->isTranslatableSetting($setting->name)) {
+        $name = $setting->name;
+
+        if ($this->isTranslatableSetting($name)) {
             $this->setTranslatedAttributes($settingValues, $setting);
+            event(new SettingWasUpdated($name, true, $settingValues));
         } else {
+            $oldValues = $setting->plainValue;
             $setting->plainValue = $this->getSettingPlainValue($settingValues);
+            event(new SettingWasUpdated($name, true, $settingValues, $oldValues));
         }
 
         return $setting->save();
