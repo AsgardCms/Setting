@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Config;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
+use Modules\Setting\Events\SettingWasCreated;
 use Modules\Setting\Events\SettingWasUpdated;
 use Modules\Setting\Repositories\SettingRepository;
 
@@ -83,9 +84,11 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
         if ($this->isTranslatableSetting($settingName)) {
             $setting->isTranslatable = true;
             $this->setTranslatedAttributes($settingValues, $setting);
+            event(new SettingWasCreated($settingName, true, $settingValues));
         } else {
             $setting->isTranslatable = false;
             $setting->plainValue = $this->getSettingPlainValue($settingValues);
+            event(new SettingWasCreated($settingName, false, $settingValues));
         }
 
         return $setting->save();
