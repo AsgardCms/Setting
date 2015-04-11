@@ -13,11 +13,11 @@ class SettingWasUpdated
     /**
      * @var string|array Containing the old values
      */
-    private $oldValues;
+    public $oldValues;
     /**
      * @var bool
      */
-    private $isTranslatable;
+    public $isTranslatable;
 
     public function __construct($name, $isTranslatable, $values, $oldValues = null)
     {
