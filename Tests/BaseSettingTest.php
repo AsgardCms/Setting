@@ -42,6 +42,11 @@ abstract class BaseSettingTest extends TestCase
                 'description' => 'core::settings.template',
                 'view' => 'core::fields.select-theme',
             ],
+            'locales' => [
+                'description' => 'core::settings.locales',
+                'view' => 'core::fields.select-locales',
+                'translatable' => false,
+            ],
         ]);
     }
 
