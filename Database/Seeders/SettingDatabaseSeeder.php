@@ -32,5 +32,12 @@ class SettingDatabaseSeeder extends Seeder
         ];
 
         $this->setting->create($data);
+
+        $data = [
+            'name' => 'core::locales',
+            'plainValue' => ['en'],
+            'isTranslatable' => false,
+        ];
+        $this->setting->create($data);
     }
 }
