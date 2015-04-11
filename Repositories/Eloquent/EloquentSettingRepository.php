@@ -79,7 +79,7 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
         $setting = new $this->model();
         $setting->name = $settingName;
 
-        if (is_array($settingValues)) {
+        if ($this->isTranslatableSetting($settingName)) {
             $setting->isTranslatable = true;
             $this->setTranslatedAttributes($settingValues, $setting);
         } else {
@@ -92,12 +92,12 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
 
     /**
      * Update the given setting
-     * @param $setting
+     * @param object setting
      * @param $settingValues
      */
     private function updateSetting($setting, $settingValues)
     {
-        if (is_array($settingValues)) {
+        if ($this->isTranslatableSetting($setting->name)) {
             $this->setTranslatedAttributes($settingValues, $setting);
         } else {
             $setting->plainValue = $settingValues;
@@ -196,5 +196,31 @@ class EloquentSettingRepository extends EloquentBaseRepository implements Settin
         return array_filter($this->moduleSettings($module), function ($setting) {
             return !isset($setting['translatable']) || $setting['translatable'] === false;
         });
+    }
+
+    /**
+     * Return a setting name using dot notation: asgard.{module}.settings.{settingName}
+     * @param string $settingName
+     * @return string
+     */
+    private function getConfigSettingName($settingName)
+    {
+        list($module, $setting) = explode('::', $settingName);
+
+        return "asgard.{$module}.settings.{$setting}";
+    }
+
+    /**
+     * Check if the given setting name is translatable
+     * @param string $settingName
+     * @return bool
+     */
+    private function isTranslatableSetting($settingName)
+    {
+        $configSettingName = $this->getConfigSettingName($settingName);
+
+        $setting = config("$configSettingName");
+
+        return isset($setting['translatable']) && $setting['translatable'] === true;
     }
 }
