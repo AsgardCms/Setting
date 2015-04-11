@@ -26,18 +26,10 @@ class SettingDatabaseSeeder extends Seeder
         Model::unguard();
 
         $data = [
-            'name' => 'core::template',
-            'plainValue' => 'Flatly',
-            'isTranslatable' => false,
+            'core::template' => 'Flatly',
+            'core::locales' => ['en'],
         ];
 
-        $this->setting->create($data);
-
-        $data = [
-            'name' => 'core::locales',
-            'plainValue' => ['en'],
-            'isTranslatable' => false,
-        ];
-        $this->setting->create($data);
+        $this->setting->createOrUpdate($data);
     }
 }
