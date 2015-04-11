@@ -88,4 +88,25 @@ class EloquentSettingRepositoryTest extends BaseSettingTest
         $coreSettings = $this->settingRepository->findByModule('core');
         $this->assertEquals(2, $coreSettings->count());
     }
+
+    /** @test */
+    public function it_encodes_array_of_non_translatable_data()
+    {
+        // Prepare
+        $data = [
+            'core::locales' => [
+                "su",
+                "bi",
+                "bs",
+            ],
+        ];
+
+        // Run
+        $this->settingRepository->createOrUpdate($data);
+
+        // Assert
+        $setting = $this->settingRepository->find(1);
+        $this->assertEquals('core::locales', $setting->name);
+        $this->assertEquals('["su","bi","bs"]', $setting->plainValue);
+    }
 }
