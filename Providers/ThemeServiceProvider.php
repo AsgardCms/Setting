@@ -25,7 +25,7 @@ class ThemeServiceProvider extends ServiceProvider
             return;
         }
 
-        if ($this->inAdministration() || $this->onAuthentication()) {
+        if ($this->inAdministration()) {
             $themeName = $this->app['config']->get('asgard.core.core.admin-theme');
 
             return $this->app['stylist']->activate($themeName, true);
