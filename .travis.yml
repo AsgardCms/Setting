@@ -17,3 +17,7 @@ script: phpunit
 
 notifications:
   slack: asgardcms:85rIXCjkamzxitmc0opndGga
+
+matrix:
+  allow_failures:
+    - php: hhvm
