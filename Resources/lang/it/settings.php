@@ -2,7 +2,7 @@
 
 return [
     'title' => [
-        'settings' => 'Impostazione',
+        'settings' => 'Impostazioni',
         'general settings' => 'Impostazioni generali',
         'module settings' => 'Impostazioni moduli',
         'module name settings' => 'Impostazioni modulo :module',
