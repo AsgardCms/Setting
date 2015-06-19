@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class MakeSettingsValueTextField extends Migration
 {
@@ -10,8 +11,12 @@ class MakeSettingsValueTextField extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER TABLE `setting__settings` CHANGE `plainValue` `plainValue` TEXT  CHARACTER SET utf8  COLLATE utf8_unicode_ci  NULL;');
-        DB::statement('ALTER TABLE `setting__setting_translations` CHANGE `value` `value` TEXT  CHARACTER SET utf8  COLLATE utf8_unicode_ci  NOT NULL;');
+        Schema::table('setting__settings', function (Blueprint $table) {
+            $table->text('plainValue')->string('plainValue')->change();
+        });
+        Schema::table('setting__setting_translations', function (Blueprint $table) {
+            $table->text('value')->string('value')->change();
+        });
     }
 
     /**
@@ -20,8 +25,12 @@ class MakeSettingsValueTextField extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE `setting__settings` CHANGE `plainValue` `plainValue` VARCHAR(255)  CHARACTER SET utf8  COLLATE utf8_unicode_ci  NULL;');
-        DB::statement('ALTER TABLE `setting__setting_translations` CHANGE `value` `value` VARCHAR(255)  CHARACTER SET utf8  COLLATE utf8_unicode_ci  NOT NULL;');
+        Schema::table('setting__settings', function (Blueprint $table) {
+            $table->string('plainValue')->text('plainValue')->change();
+        });
+        Schema::table('setting__setting_translations', function (Blueprint $table) {
+            $table->string('value')->text('value')->change();
+        });
     }
 
 }
