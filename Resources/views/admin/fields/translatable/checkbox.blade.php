@@ -1,5 +1,5 @@
 <div class="checkbox">
-    <?php $oldValue = $dbSettings[$settingName]->hasTranslation($lang) ? $dbSettings[$settingName]->translate($lang)->value : ''; ?>
+    <?php $oldValue = (isset($dbSettings[$settingName]) && $dbSettings[$settingName]->hasTranslation($lang)) ? $dbSettings[$settingName]->translate($lang)->value : ''; ?>
     <label for="{{ $settingName . "[$lang]" }}">
         <input id="{{ $settingName . "[$lang]" }}"
                 name="{{ $settingName . "[$lang]" }}"
