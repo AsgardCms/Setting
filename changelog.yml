@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.0.5":
+        changed:
+            - Fixing radio and checkbox field settings not being defined at first use
     "1.0.4":
         changed:
             - Changing the settings value fields to TEXT type, using doctrine/dbal to make it work in all db drivers
