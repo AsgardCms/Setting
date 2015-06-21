@@ -1,6 +1,5 @@
 <?php namespace Modules\Setting\Providers;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
@@ -53,7 +52,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function registerAllThemes()
     {
-        $directories = $this->app['cache']->rememberForever('stylist.theme.directories', function() {
+        $directories = $this->app['cache']->rememberForever('stylist.theme.directories', function () {
             return $this->app['files']->directories(config('stylist.themes.paths')[0]);
         });
 

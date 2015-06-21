@@ -32,5 +32,4 @@ class MakeSettingsValueTextField extends Migration
             $table->string('value')->text('value')->change();
         });
     }
-
 }
