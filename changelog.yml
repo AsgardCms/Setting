@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.0.6":
+        changed:
+            - Get a default value from settings configuration file if setting is empty or not set
     "1.0.5":
         changed:
             - Fixing radio and checkbox field settings not being defined at first use
