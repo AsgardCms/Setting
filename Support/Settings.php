@@ -28,27 +28,33 @@ class Settings implements Setting
     /**
      * Getting the setting
      * @param  string $name
-     * @param  null   $locale
-     * @param  null   $default
+     * @param  string   $locale
+     * @param  string   $default
      * @return mixed
      */
     public function get($name, $locale = null, $default = null)
     {
-        if (!$this->cache->has("setting.$name.$locale")) {
-            $setting = $this->setting->get($name);
-            if ($setting) {
-                if ($setting->isTranslatable) {
-                    if ($setting->hasTranslation($locale)) {
-                        $this->cache->put("setting.$name.$locale", $setting->translate($locale)->value, '3600');
-                    } else {
-                        $this->cache->put("setting.$name.$locale", '', '3600');
-                    }
-                } else {
-                    $this->cache->put("setting.$name.$locale", $setting->plainValue, '3600');
-                }
+        if ($this->cache->has("setting.$name.$locale")) {
+            return $this->cache->get("setting.$name.$locale");
+        }
+
+        $defaultFromConfig = $this->getDefaultFromConfigFor($name);
+
+        $setting = $this->setting->get($name);
+        if (! $setting) {
+            return is_null($default) ? $defaultFromConfig : $default;
+        }
+
+        if ($setting->isTranslatable) {
+            if ($setting->hasTranslation($locale)) {
+                $default = empty($setting->translate($locale)->value) ? $defaultFromConfig : $setting->translate($locale)->value;
+                $this->cache->put("setting.$name.$locale", $default, '3600');
             } else {
-                return is_null($default) ? '' : $default;
+                $this->cache->put("setting.$name.$locale", $defaultFromConfig, '3600');
             }
+        } else {
+            $default = empty($setting->plainValue) ? $defaultFromConfig : $setting->plainValue;
+            $this->cache->put("setting.$name.$locale", $default, '3600');
         }
 
         return $this->cache->get("setting.$name.$locale");
@@ -76,5 +82,18 @@ class Settings implements Setting
      */
     public function set($key, $value)
     {
+    }
+
+    /**
+     * Get the default value from the settings configuration file,
+     * for the given setting name.
+     * @param string $name
+     * @return string
+     */
+    private function getDefaultFromConfigFor($name)
+    {
+        list($module, $settingName) = explode('::', $name);
+
+        return config("asgard.$module.settings.$settingName.default", '');
     }
 }
