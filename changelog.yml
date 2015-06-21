@@ -1,5 +1,10 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.0.7":
+        added:
+            - Using new sidebar extender class
+        removed:
+            - Old SidebarViewComposer
     "1.0.6":
         changed:
             - Get a default value from settings configuration file if setting is empty or not set
