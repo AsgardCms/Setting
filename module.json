@@ -16,7 +16,5 @@
     "aliases": {
         "Setting": "Modules\\Setting\\Facades\\Settings"
     },
-    "files": [
-        "start.php"
-    ]
+    "files": []
 }
