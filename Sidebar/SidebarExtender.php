@@ -29,8 +29,8 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender
      */
     public function extendWith(Menu $menu)
     {
-        $menu->group(trans('workshop::workshop.title'), function (SidebarGroup $group) {
-            $group->addItem(trans('setting::settings.title.settings'), function (SidebarItem $item) {
+        $menu->group(trans('workshop::workshop.title'), function (Group $group) {
+            $group->item(trans('setting::settings.title.settings'), function (Item $item) {
                 $item->icon('fa fa-cog');
                 $item->weight(50);
                 $item->route('admin.setting.settings.index');
