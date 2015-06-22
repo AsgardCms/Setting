@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Database\Eloquent\Model;
+use Maatwebsite\Sidebar\SidebarServiceProvider;
 use Modules\Setting\Providers\SettingServiceProvider;
 use Modules\Setting\Repositories\SettingRepository;
 use Orchestra\Testbench\TestCase;
@@ -26,6 +27,7 @@ abstract class BaseSettingTest extends TestCase
     {
         return [
             SettingServiceProvider::class,
+            SidebarServiceProvider::class,
         ];
     }
 
