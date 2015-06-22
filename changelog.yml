@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.0.9":
+        changed:
+            - Require stable version of Doctrine/Dbal
     "1.0.8":
     "1.0.7":
         added:
