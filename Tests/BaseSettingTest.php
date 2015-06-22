@@ -1,11 +1,15 @@
 <?php namespace Modules\Setting\Tests;
 
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Setting\Providers\SettingServiceProvider;
+use Modules\Setting\Repositories\SettingRepository;
 use Orchestra\Testbench\TestCase;
 
 abstract class BaseSettingTest extends TestCase
 {
     /**
-     * @var \Modules\Setting\Repositories\SettingRepository
+     * @var SettingRepository
      */
     protected $settingRepository;
 
@@ -15,12 +19,14 @@ abstract class BaseSettingTest extends TestCase
 
         $this->resetDatabase();
 
-        $this->settingRepository = app('Modules\Setting\Repositories\SettingRepository');
+        $this->settingRepository = app(SettingRepository::class);
     }
 
     protected function getPackageProviders($app)
     {
-        return ['Modules\Setting\Providers\SettingServiceProvider'];
+        return [
+            SettingServiceProvider::class,
+        ];
     }
 
     protected function getEnvironmentSetUp($app)
@@ -52,14 +58,14 @@ abstract class BaseSettingTest extends TestCase
 
     protected function getPackageAliases($app)
     {
-        return ['Eloquent' => 'Illuminate\Database\Eloquent\Model'];
+        return ['Eloquent' => Model::class];
     }
 
     private function resetDatabase()
     {
         // Relative to the testbench app folder: vendors/orchestra/testbench/src/fixture
         $migrationsPath = 'Database/Migrations';
-        $artisan = $this->app->make('Illuminate\Contracts\Console\Kernel');
+        $artisan = $this->app->make(Kernel::class);
         // Makes sure the migrations table is created
         $artisan->call('migrate', [
             '--database' => 'sqlite',
