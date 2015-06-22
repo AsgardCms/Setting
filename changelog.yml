@@ -1,5 +1,6 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.0.8":
     "1.0.7":
         added:
             - Using new sidebar extender class
