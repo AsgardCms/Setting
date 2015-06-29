@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.1.0":
+       changed:
+           - Adding table engine into migrations
     "1.0.9":
         changed:
             - Require stable version of Doctrine/Dbal
