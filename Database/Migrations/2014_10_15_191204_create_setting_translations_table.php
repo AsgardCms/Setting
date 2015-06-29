@@ -13,6 +13,7 @@ class CreateSettingTranslationsTable extends Migration
     public function up()
     {
         Schema::create('setting__setting_translations', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('setting_id')->unsigned();
             $table->string('locale')->index();
