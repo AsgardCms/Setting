@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.1.1":
+       changed:
+           - Remmoving unused <code>start.php</code> file
     "1.1.0":
        changed:
            - Adding table engine into migrations
