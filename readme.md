@@ -14,7 +14,7 @@
 
 ## Resources
 
-- [View the changelog](CHANGELOG.md)
+- [View the changelog](https://asgardcms.com/en/docs/getting-started/contributing)
 - [Contribute to AsgardCMS](CONTRIBUTING.md)
 - [License](LICENSE.md)
 - [Documentation](http://asgardcms.com/docs/setting-module/adding-settings)
