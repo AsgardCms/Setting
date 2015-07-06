@@ -11,7 +11,8 @@
     "providers": [
         "Modules\\Setting\\Providers\\SettingServiceProvider",
         "Modules\\Setting\\Providers\\ThemeServiceProvider",
-        "Modules\\Setting\\Providers\\RouteServiceProvider"
+        "Modules\\Setting\\Providers\\RouteServiceProvider",
+        "Modules\\Setting\\Providers\\EventServiceProvider"
     ],
     "aliases": {
         "Setting": "Modules\\Setting\\Facades\\Settings"
