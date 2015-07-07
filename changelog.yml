@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.2.1":
+       changed:
+           - Do not cache the theme directories
     "1.2.0":
        changed:
            - Clearing the settings cache on create / update
