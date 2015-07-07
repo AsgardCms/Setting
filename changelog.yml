@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.3.0":
+       added:
+           - Adding a setting helper function, <code>setting()</code>
     "1.2.1":
        changed:
            - Do not cache the theme directories
