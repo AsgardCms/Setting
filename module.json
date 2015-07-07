@@ -17,5 +17,7 @@
     "aliases": {
         "Setting": "Modules\\Setting\\Facades\\Settings"
     },
-    "files": []
+    "files": [
+        "helpers.php"
+    ]
 }
