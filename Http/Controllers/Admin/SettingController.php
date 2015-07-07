@@ -1,9 +1,6 @@
 <?php namespace Modules\Setting\Http\Controllers\Admin;
 
 use Illuminate\Session\Store;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\View;
-use Laracasts\Flash\Flash;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Setting\Http\Requests\SettingRequest;
 use Modules\Setting\Repositories\SettingRepository;
@@ -35,16 +32,16 @@ class SettingController extends AdminBaseController
 
     public function index()
     {
-        return Redirect::route('dashboard.module.settings', ['core']);
+        return redirect()->route('dashboard.module.settings', ['core']);
     }
 
     public function store(SettingRequest $request)
     {
         $this->setting->createOrUpdate($request->all());
 
-        Flash::success(trans('setting::messages.settings saved'));
+        flash(trans('setting::messages.settings saved'));
 
-        return Redirect::route('dashboard.module.settings', [$this->session->get('module', 'Core')]);
+        return redirect()->route('dashboard.module.settings', [$this->session->get('module', 'Core')]);
     }
 
     public function getModuleSettings(Module $currentModule)
