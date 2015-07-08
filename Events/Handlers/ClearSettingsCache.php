@@ -14,7 +14,7 @@ class ClearSettingsCache
         $this->cache = $cache;
     }
 
-    public function handle($event)
+    public function handle()
     {
         $this->cache->tags('setting.settings')->flush();
     }
