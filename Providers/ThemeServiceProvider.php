@@ -70,13 +70,4 @@ class ThemeServiceProvider extends ServiceProvider
 
         return $finder->exists('.env');
     }
-
-    /**
-     * Check if we are on the authentication pages
-     * @return bool
-     */
-    private function onAuthentication()
-    {
-        return $this->app['request']->segment(2) === 'auth';
-    }
 }
