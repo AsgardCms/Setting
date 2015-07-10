@@ -1,5 +1,9 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.5.0":
+       changed:
+           - Set default theme location
+           - Use the global <code>isInstalled</code> method
     "1.4.0":
        changed:
            - Use the helper functions in controller
