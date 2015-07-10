@@ -21,7 +21,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function setActiveTheme()
     {
-        if ($this->app->runningInConsole() || ! $this->asgardIsInstalled()) {
+        if ($this->app->runningInConsole() || ! app('asgard.isInstalled')) {
             return;
         }
 
@@ -57,17 +57,5 @@ class ThemeServiceProvider extends ServiceProvider
         foreach ($directories as $directory) {
             $this->app['stylist']->registerPath($directory);
         }
-    }
-
-    /**
-     * Check if Asgard is installed
-     * @return bool
-     */
-    private function asgardIsInstalled()
-    {
-        /** @var \Illuminate\Contracts\Filesystem\Filesystem $finder */
-        $finder = app('Illuminate\Contracts\Filesystem\Filesystem');
-
-        return $finder->exists('.env');
     }
 }
