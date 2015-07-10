@@ -52,7 +52,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function registerAllThemes()
     {
-        $directories = $this->app['files']->directories(config('stylist.themes.paths')[0]);
+        $directories = $this->app['files']->directories(config('stylist.themes.paths', [base_path('/Themes')])[0]);
 
         foreach ($directories as $directory) {
             $this->app['stylist']->registerPath($directory);
