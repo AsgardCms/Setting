@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.6.0":
+        added:
+            - Adding a <code>CacheSettingDecorator</code> class which handles the caching correctly
     "1.5.0":
        changed:
            - Set default theme location
