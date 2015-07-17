@@ -3,7 +3,9 @@
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Modules\Setting\Entities\Setting;
+use Modules\Setting\Repositories\Cache\CacheSettingDecorator;
 use Modules\Setting\Repositories\Eloquent\EloquentSettingRepository;
+use Modules\Setting\Repositories\SettingRepository;
 use Modules\Setting\Support\Settings;
 
 class SettingServiceProvider extends ServiceProvider
@@ -46,12 +48,15 @@ class SettingServiceProvider extends ServiceProvider
 
     private function registerBindings()
     {
-        $this->app->bind(
-            'Modules\Setting\Repositories\SettingRepository',
-            function () {
-                return new EloquentSettingRepository(new Setting());
+        $this->app->bind(SettingRepository::class, function () {
+            $repository = new EloquentSettingRepository(new Setting());
+
+            if (! config('app.cache')) {
+                return $repository;
             }
-        );
+
+            return new CacheSettingDecorator($repository);
+        });
         $this->app->bind(
             'Modules\Core\Contracts\Setting',
             'Modules\Setting\Support\Settings'
