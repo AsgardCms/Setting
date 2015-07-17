@@ -3,6 +3,7 @@
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Modules\Setting\Entities\Setting;
+use Modules\Setting\Facades\Settings as SettingsFacade;
 use Modules\Setting\Repositories\Cache\CacheSettingDecorator;
 use Modules\Setting\Repositories\Eloquent\EloquentSettingRepository;
 use Modules\Setting\Repositories\SettingRepository;
@@ -27,12 +28,12 @@ class SettingServiceProvider extends ServiceProvider
         $this->registerBindings();
 
         $this->app['setting.settings'] = $this->app->share(function ($app) {
-            return new Settings($app['Modules\Setting\Repositories\SettingRepository'], $app['cache']);
+            return new Settings($app[SettingRepository::class], $app['cache']);
         });
 
         $this->app->booting(function () {
             $loader = AliasLoader::getInstance();
-            $loader->alias('Settings', 'Modules\Setting\Facades\Settings');
+            $loader->alias('Settings', SettingsFacade::class);
         });
     }
 
@@ -58,8 +59,8 @@ class SettingServiceProvider extends ServiceProvider
             return new CacheSettingDecorator($repository);
         });
         $this->app->bind(
-            'Modules\Core\Contracts\Setting',
-            'Modules\Setting\Support\Settings'
+            \Modules\Core\Contracts\Setting::class,
+            Settings::class
         );
     }
 }
