@@ -1,6 +1,5 @@
 <?php namespace Modules\Setting\Support;
 
-use Illuminate\Cache\CacheManager;
 use Modules\Core\Contracts\Setting;
 use Modules\Setting\Repositories\SettingRepository;
 
@@ -10,19 +9,13 @@ class Settings implements Setting
      * @var SettingRepository
      */
     private $setting;
-    /**
-     * @var CacheManager
-     */
-    private $cache;
 
     /**
      * @param SettingRepository $setting
-     * @param CacheManager      $cache
      */
-    public function __construct(SettingRepository $setting, CacheManager $cache)
+    public function __construct(SettingRepository $setting)
     {
         $this->setting = $setting;
-        $this->cache = $cache;
     }
 
     /**
@@ -34,10 +27,6 @@ class Settings implements Setting
      */
     public function get($name, $locale = null, $default = null)
     {
-        if ($this->cache->has("setting.$name.$locale")) {
-            return $this->cache->get("setting.$name.$locale");
-        }
-
         $defaultFromConfig = $this->getDefaultFromConfigFor($name);
 
         $setting = $this->setting->get($name);
@@ -47,17 +36,13 @@ class Settings implements Setting
 
         if ($setting->isTranslatable) {
             if ($setting->hasTranslation($locale)) {
-                $default = empty($setting->translate($locale)->value) ? $defaultFromConfig : $setting->translate($locale)->value;
-                $this->cache->put("setting.$name.$locale", $default, '3600');
-            } else {
-                $this->cache->put("setting.$name.$locale", $defaultFromConfig, '3600');
+                return empty($setting->translate($locale)->value) ? $defaultFromConfig : $setting->translate($locale)->value;
             }
         } else {
-            $default = empty($setting->plainValue) ? $defaultFromConfig : $setting->plainValue;
-            $this->cache->put("setting.$name.$locale", $default, '3600');
+            return empty($setting->plainValue) ? $defaultFromConfig : $setting->plainValue;
         }
 
-        return $this->cache->get("setting.$name.$locale");
+        return $defaultFromConfig;
     }
 
     /**
