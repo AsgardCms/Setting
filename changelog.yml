@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.8.0":
+        added:
+            - Spanish translations
     "1.7.0":
         added:
             - Added portuguese translations
