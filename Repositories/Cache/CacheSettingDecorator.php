@@ -49,6 +49,7 @@ class CacheSettingDecorator extends BaseCacheDecorator implements SettingReposit
     public function moduleSettings($modules)
     {
         $moduleList = implode(',', $modules);
+
         return $this->cache
             ->tags($this->entityName, 'global')
             ->remember("{$this->locale}.{$this->entityName}.moduleSettings.{$moduleList}", $this->cacheTime,
