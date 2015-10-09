@@ -4,11 +4,11 @@ return [
     'title' => [
         'settings' => 'Einstellungen',
         'general settings' => 'Allgemeine Einstellungen',
-        'module settings' => 'Moduleinstellungen',
-        'module name settings' => ':module Moduleinstellungen',
+        'module settings' => 'Module',
+        'module name settings' => ':module Einstellungen',
     ],
     'breadcrumb' => [
         'settings' => 'Einstellungen',
-        'module settings' => ':module Moduleinstellungen',
+        'module settings' => ':module Einstellungen',
     ],
 ];
