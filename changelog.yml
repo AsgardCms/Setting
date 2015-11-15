@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.12.0":
+        changed:
+            - Make setting name unique in database
     "1.11.0":
         added:
             - Added Russian translations
