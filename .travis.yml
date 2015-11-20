@@ -17,6 +17,9 @@ sudo: false
 
 notifications:
   slack: asgardcms:85rIXCjkamzxitmc0opndGga
+  email:
+    - n.widart@gmail.com
+    - josh@joshbrown.me
 
 matrix:
   allow_failures:
