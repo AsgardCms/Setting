@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.12.1":
+        changed:
+            - Manual inclusing of iCheck css file has been removed
     "1.12.0":
         changed:
             - Make setting name unique in database
