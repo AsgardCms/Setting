@@ -1,6 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
     "1.13.0":
+        changed:
+            - Removed language files, they are now in the translation module
         added:
             - Adding a wysiwyg settings field.
     "1.12.1":
