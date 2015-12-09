@@ -15,7 +15,6 @@
 | Branch | Travis-ci |
 | ---------------- | --------------- |
 | master  | [![Build Status](https://travis-ci.org/AsgardCms/Setting.svg?branch=master)](https://travis-ci.org/AsgardCms/Setting)  |
-| develop  | [![Build Status](https://travis-ci.org/AsgardCms/Setting.svg?branch=develop)](https://travis-ci.org/AsgardCms/Setting)   |
 
 ## Resources
 
