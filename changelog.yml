@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.13.1":
+        changed:
+            - Use the findByName method to find a setting
     "1.13.0":
         changed:
             - Removed language files, they are now in the translation module
