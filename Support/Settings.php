@@ -29,7 +29,7 @@ class Settings implements Setting
     {
         $defaultFromConfig = $this->getDefaultFromConfigFor($name);
 
-        $setting = $this->setting->findByName($name); //before that change I could not fetch any setting!!!
+        $setting = $this->setting->findByName($name);
         if (! $setting) {
             return is_null($default) ? $defaultFromConfig : $default;
         }
