@@ -1,5 +1,8 @@
 url: https://github.com/AsgardCms/Setting
 versions:
+    "1.14.0":
+        changed:
+            - Use <code>$router</code> variable in routes file
     "1.13.1":
         changed:
             - Use the findByName method to find a setting

@@ -3,9 +3,10 @@
     "alias": "setting",
     "description": "Module for handling all site settings.",
     "keywords": [
-
+        "asgardcms",
+        "settings"
     ],
-    "version": "1.13.1",
+    "version": "1.14.0",
     "active": 1,
     "order": 1,
     "providers": [
